@@ -2,9 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-
-int main() {
-	FILE *arquivo = fopen("BRICS_PIBPerCapita2.csv", "r");
+void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *planilha) {
+	FILE *arquivo = fopen(caminho_dos_dados, "r");
 	if (arquivo == NULL){
 		perror("Não encontrou o arquivo");
 		exit(1);
@@ -14,91 +13,43 @@ int main() {
 	linhas = 0;
 	colunas = 0;
 	char linha[1000000];
-	//char tab [18][100];
-
-
-  	//int rows, cols, i;
-  	char **x;
-  	int rows = 1000;
-  	int cols = 1000;
-  	/* obtain values for rows & cols */
-
-  	/* allocate the array */
- 	x = malloc(rows * sizeof *x);
- 	for (int i=0; i<rows; i++)
-  	{
-    	x[i] = malloc(cols * sizeof *x[i]);
-  	}
-  	//for (int i = 0; i < 1000; i++){
-  		//strcpy(x[i], "--");
-  	//}
-
 
   	
-  	int contador = 0;
+  	char **x;
+  	int laux = 1000;
+  	int caux = 1000;
 
-
-
-	while (fgets(linha, sizeof(linha), arquivo)){
-		char *token;
-		token = strtok(linha, ",\n");
-		//colunas = 0;
-		int contador2 = 0;
-		if (linhas == 0){
-			while (token != NULL){
-				printf("%s    ", token);
-			
-				strcpy(x[contador], token);
-			
-				contador++;
-				colunas++;
-				
-				token = strtok(NULL,",\n");
-
-			}
-		}
-		else{
-			while (contador2 < colunas){
-				if (token != NULL){
-					printf("%s    ", token);
-					strcpy(x[contador], token);
-				}	
-				else{
-					strcpy(x[contador], "cu");
-				}
-				contador2++;
-				contador++;
-				
-				token = strtok(NULL,",\n");
-			}
-		}
-		printf("\n");
-		linhas++;
-	}
-	printf("\n");
-	printf("%i\n", linhas);
-	printf("%i\n", colunas);
-	char tab[linhas*colunas][100];
-	for (int i = 0; i<linhas*colunas; i++){
-		strcpy(tab[i], x[i]);
-	}
-	for (int i=linhas*colunas; i<1000; i++)
+ 	x = malloc(laux * sizeof *x);
+ 	for (int i=0; i<laux; i++)
   	{
-    	free(x[i]);
+    	x[i] = malloc(caux * sizeof *x[i]);
   	}
-  	//free(x);
-  	//int contador = 0;
-
-	for (int i = 0;i < linhas ;i++){
-		for (int j = 0; j < colunas; j++){
-			printf("%s  ",x[i*colunas+j]);
+	
+	int contador = 0;
+	while (fgets(linha, sizeof(linha), arquivo)){
+		linhas++;
+		char token[100];
+		for(int i=0; i<strlen(linha);i++){
+			if(linha[i] == ',' || linha[i] == '\n'){
+				strcpy(x[contador],token);
+				memset(token,0,100);
+				if (linhas==1)colunas++;
+				contador++;
+				} 
+			else {
+				size_t tamanho = strlen(token);
+				token[tamanho] = linha[i];
+				token[tamanho+1] = '\0';
+			}
 		}
-		printf("\n");
 	}
-	//char *tab[50][linhas][colunas]; //UM LIXAO
-	                      
-
-	//printf("%i\n", linhas);
-	//printf("%i\n", colunas);
+	char planilha[linhas*colunas][100];
+	for(int i=0;i<linhas*colunas;i++){
+		strcpy(planilha[i],x[i]);
+	}
+	for(int i=0;i<1000;i++) free(x[i]);
+	free(x);
+	}
 	fclose(arquivo);
 }
+		
