@@ -8,32 +8,23 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
 		perror("Não encontrou o arquivo");
 		exit(1);
 	}
-	int linhas;
-	int colunas;
-	linhas = 0;
-	colunas = 0;
+	int linhas1;
+	int colunas1;
+	linhas1 = 0;
+	colunas1 = 0;
 	char linha[1000000];
 
-  	
-  	char **x;
-  	int laux = 1000;
-  	int caux = 1000;
-
- 	x = malloc(laux * sizeof *x);
- 	for (int i=0; i<laux; i++)
-  	{
-    	x[i] = malloc(caux * sizeof *x[i]);
-  	}
-	
+  	char **array = (char **) planilha;
+  
 	int contador = 0;
 	while (fgets(linha, sizeof(linha), arquivo)){
-		linhas++;
+		linhas1++;
 		char token[100];
 		for(int i=0; i<strlen(linha);i++){
 			if(linha[i] == ',' || linha[i] == '\n'){
-				strcpy(x[contador],token);
+				strcpy(array[contador],token);
 				memset(token,0,100);
-				if (linhas==1)colunas++;
+				if (linhas1==1)colunas1++;
 				contador++;
 				} 
 			else {
@@ -43,13 +34,33 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
 			}
 		}
 	}
-	char planilha[linhas*colunas][100];
-	for(int i=0;i<linhas*colunas;i++){
-		strcpy(planilha[i],x[i]);
-	}
-	for(int i=0;i<1000;i++) free(x[i]);
-	free(x);
-	}
+	
+
 	fclose(arquivo);
+	*linhas = linhas1;
+	*colunas = colunas1;
+	
+}
+void main(){
+	int linhas, colunas;
+	char *arquivo = "BRICS_PIBPerCapita2.csv";
+	char **planilha;
+	planilha = malloc(1000 * sizeof *planilha);
+ 	for (int i=0; i<1000; i++)
+  	{
+    	planilha[i] = malloc(1000 * sizeof *planilha[i]);
+  	}
+	carrega_dados(arquivo, &linhas, &colunas, planilha);
+	for(int i=linhas*colunas;i<1000;i++){
+		//strcpy(planilha[i],x[i]);
+		free(planilha[i]);
+	}
+	for (int i = 0; i < linhas; i++){
+		for (int j = 0; j < colunas; j++){
+			printf("%s   ", planilha[i*colunas+j]);
+		}
+		printf("\n");
+	}
+
 }
 		
