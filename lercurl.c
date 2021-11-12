@@ -5,19 +5,24 @@
 
 void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *planilha, char *nomes_linhas[]) {
 
-        CURL *curl;
-        char *arquivo_csv = "//tmp/dados_da_libliblib.csv";
-        FILE *arquivo = fopen(arquivo_csv, "a+");
-        curl = curl_easy_init();
+    CURL *curl;
+    char *arquivo_csv = "//tmp/dados_da_libliblib.csv";
+    FILE *arquivo = fopen(arquivo_csv, "wb");
+    curl = curl_easy_init();
+    CURLcode res;
+    if (curl){
+    curl_easy_setopt(curl, CURLOPT_URL, caminho_dos_dados);
+    curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
+    curl_easy_setopt(curl, CURLOPT_WRITEDATA, arquivo);
+    res = curl_easy_perform(curl);
+    if(res != CURLE_OK) {
+                fprintf(stderr, "curl_easy_perform() não funcionou: %s\n", curl_easy_strerror(res));
+        }
+    fclose(arquivo);
+    curl_easy_cleanup(curl);
+    }
+    arquivo = fopen(arquivo_csv, "r");
 
-        curl_easy_setopt(curl, CURLOPT_URL, caminho_dos_dados);
-        curl_easy_setopt(curl, CURLOPT_WRITEDATA, arquivo);
-        curl_easy_perform(curl);
-
-	if (arquivo == NULL){
-		perror("Não encontrou o arquivo");
-		exit(1);
-	}
 	int linhas1;
 	int colunas1;
 	linhas1 = 0;
@@ -56,9 +61,7 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
 	fclose(arquivo);
 	*linhas = linhas1;
 	*colunas = colunas1;
-
-        curl_easy_cleanup(curl);
-	
+    	
 }
 void main(){
 	int linhas, colunas;
@@ -81,8 +84,6 @@ void main(){
 
 	for(int i=linhas;i<1000;i++){
             for(int j=colunas;j<1000;j++){
-		//strcpy(planilha[i],x[i]);
-		//free(planilha[i][j]);
             }
             free(planilha[i]);
 	}
