@@ -48,7 +48,7 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
 	*colunas = colunas1;
 	
 }
-void main(){
+/*void main(){
 	int linhas, colunas;
 	char *arquivo = "BRICS_PIBPerCapita.csv";
 	float **planilha; char **nomes_linhas;
@@ -86,5 +86,5 @@ void main(){
 		printf("\n");
 	}
 
-}
-		
+}		
+*/
