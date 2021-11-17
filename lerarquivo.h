@@ -3,7 +3,7 @@
 
 /*
 	Função: carrega_dados
-	Uso: void carrega_dados (*caminho_dos_dados,*linhas, *colunas,*planilha,*nomes_linhas[]);
+	Uso: carrega_dados(*caminho_dos_dados,*linhas, *colunas,*planilha,*nomes_linhas[]);
 	---------------------------------------------------------------------------------------------------
 		Essa função lê arquivos CSV de diretórios e armazena os principais dados
 	em diferentes parâmetros. Ela consegue ler diretórios já baixados previamente
@@ -15,7 +15,7 @@
 		*linhas e *colunas são os ponteiros das variáveis em que o usuário deseja armazenar a quantidade
 	de linhas e colunas da planilha com os dados.
 		
-		*planilha é um ponteiro para a matriz em que p usuário deseja armazenar os dados numéricos do 
+		*planilha é um ponteiro para a matriz em que o usuário deseja armazenar os dados numéricos do 
 	csv, inclusive os números da primeira linha.
 		
 		*nomes_linhas[] é o ponteiro para o vetor onde o usuário deseja armazenar os primeiros termos 
