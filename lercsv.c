@@ -15,7 +15,7 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
 	char linha[1000000];
 
   	float **array = (float **) planilha;
-        char **aux_nomes = (char **) nomes_linhas;
+    char **aux_nomes = (char **) nomes_linhas;
   
 	int contador = 0;
 	while (fgets(linha, sizeof(linha), arquivo)){

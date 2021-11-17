@@ -1,5 +1,5 @@
-#ifndef _liblercsv_h
-#define _liblercsv_h
+#ifndef _liblerarquivo_h
+#define _liblerarquivo_h
 
 /*
 	Função: carrega_dados
