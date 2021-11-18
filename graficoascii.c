@@ -53,8 +53,8 @@ void desenha_grafico (int linhas, int colunas, float planilha[][colunas]){
 	int a = execvp(arg[0],arg);
 }
 
-
-//unit test
+/*
+unit test
 void main(){
 	int linhas, colunas;
 	char *arquivo = "https://www.ime.usp.br/~kon/tmp/BRICS_PIBPerCapita.csv";
@@ -97,5 +97,5 @@ void main(){
 	
 	desenha_grafico(linhas,colunas-1,array);
 }	
-
+*/
 		
