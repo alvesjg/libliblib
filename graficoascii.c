@@ -38,7 +38,7 @@ void desenha_grafico (int linhas, int colunas, float planilha[][colunas]){
 	fprintf(arquivo,"set key top outside \n");
 	fprintf(arquivo,"set xlabel \"%s\" \n",rotulo_x);
 	fprintf(arquivo,"set ylabel \"%s\" \n",rotulo_y);
-	fprintf(arquivo,"set term dumb 142 57\n");
+	fprintf(arquivo,"set term dumb 100 50\n");
 	for(int i=1;i<linhas;i++){
 		if(i==1) fprintf(arquivo,"plot \"%s\" w l ,\\\n",nome_linhas[i]);
 		else if(i<linhas-1)fprintf(arquivo,"\"%s\" w l ,\\\n",nome_linhas[i]);
