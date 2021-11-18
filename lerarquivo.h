@@ -1,5 +1,5 @@
-#ifndef _liblerarquivo_h
-#define _liblerarquivo_h
+#ifndef _lerarquivo_h
+#define _lerarquivo_h
 
 /*
 	Função: carrega_dados
@@ -21,8 +21,6 @@
 		*nomes_linhas[] é o ponteiro para o vetor onde o usuário deseja armazenar os primeiros termos 
 	de todas as linhas do csv. 
 		OBS: é necessário que a alocação dinâmica de memória seja feita antes da chamada da função
-
-
 */
 
 void carrega_dados(char *caminho_dos_dados, int *linhas,int *colunas, void *planilha, char *nomes_linhas[]);
