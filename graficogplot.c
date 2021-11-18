@@ -28,17 +28,18 @@ void desenha_grafico (int linhas, int colunas, float planilha[][colunas]){
 		strcat(diretorio,nome_linhas[i]); 
 		FILE *arquivo = fopen(diretorio, "w+");
 		for (int j=0;j<colunas;j++){
-			if (planilha[i][j] != 0.0)fprintf(arquivo,"%f %f \n",planilha[0][j],planilha[i][j]);
+			fprintf(arquivo,"%f %f \n",planilha[0][j],planilha[i][j]);
 		}
 		fclose(arquivo);	
 	}
 	FILE *arquivo = fopen("/tmp/script.p","w+");
 	fprintf(arquivo,"set title \"%s\" \n",titulo_grafico);
+	fprintf(arquivo,"set term png size 1024,768 \nset output \"teste.png\"  \n");
 	fprintf(arquivo,"cd \"/tmp\" \n");
 	fprintf(arquivo,"set key top outside \n");
 	fprintf(arquivo,"set xlabel \"%s\" \n",rotulo_x);
 	fprintf(arquivo,"set ylabel \"%s\" \n",rotulo_y);
-	fprintf(arquivo,"set term png size 1024,768 \nset output \"~/teste.png\"  \n");
+	
 	for(int i=1;i<linhas;i++){
 		if(i==1) fprintf(arquivo,"plot \"%s\" w l lw 3,\\\n",nome_linhas[i]);
 		else if(i<linhas-1)fprintf(arquivo,"\"%s\" w l lw 3,\\\n",nome_linhas[i]);
@@ -57,7 +58,7 @@ void desenha_grafico (int linhas, int colunas, float planilha[][colunas]){
 //unit test
 void main(){
 	int linhas, colunas;
-	char *arquivo = "https://www.ime.usp.br/~kon/tmp/BRICS_PIBPerCapita.csv";
+	char *arquivo = "http://www.ime.usp.br/~kon/tmp/BRICS_ExpectativaDeVida.csv";
 	float **planilha; char **nomes_linhas;
 
 	planilha = malloc(1000 * sizeof *planilha);

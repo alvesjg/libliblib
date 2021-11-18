@@ -18,9 +18,10 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
     char **aux_nomes = (char **) nomes_linhas;
   
 	int contador = 0;
+	char *comparador = "";
 	while (fgets(linha, sizeof(linha), arquivo)){
 		linhas1++;
-                colunas1 = 0;
+        colunas1 = 0;
 		char token[100];
 		for(int i=0; i<strlen(linha);i++){
 			if(linha[i] == ',' || linha[i] == '\n'){
@@ -28,7 +29,8 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
                                     strcpy(aux_nomes[linhas1-1],token);
                                 }
                                 else {
-                                    array[linhas1-1][colunas1-1] = atof(token);
+                                	array[linhas1-1][colunas1-1] = array[linhas1-1][colunas1-1]/0.0; 
+                                    if(strlen(token)>0)array[linhas1-1][colunas1-1] = atof(token);
                                 }
 				memset(token,0,100);
 				colunas1++;

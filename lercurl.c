@@ -12,6 +12,7 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
     CURLcode res;
     if (curl){
     curl_easy_setopt(curl, CURLOPT_URL, caminho_dos_dados);
+    curl_easy_setopt(curl , CURLOPT_FOLLOWLOCATION, 1L);
     curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, NULL);
     curl_easy_setopt(curl, CURLOPT_WRITEDATA, arquivo);
     res = curl_easy_perform(curl);
@@ -43,7 +44,8 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
                                     strcpy(aux_nomes[linhas1-1],token);
                                 }
                                 else {
-                                    array[linhas1-1][colunas1-1] = atof(token);
+                                    array[linhas1-1][colunas1-1] = array[linhas1-1][colunas1-1]/0.0; 
+                                    if(strlen(token)>0)array[linhas1-1][colunas1-1] = atof(token);
                                 }
 				memset(token,0,100);
 				colunas1++;

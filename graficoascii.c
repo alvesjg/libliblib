@@ -28,7 +28,7 @@ void desenha_grafico (int linhas, int colunas, float planilha[][colunas]){
 		strcat(diretorio,nome_linhas[i]); 
 		FILE *arquivo = fopen(diretorio, "w+");
 		for (int j=0;j<colunas;j++){
-			if (planilha[i][j] != 0.0)fprintf(arquivo,"%f %f \n",planilha[0][j],planilha[i][j]);
+			fprintf(arquivo,"%f %f \n",planilha[0][j],planilha[i][j]);
 		}
 		fclose(arquivo);	
 	}
