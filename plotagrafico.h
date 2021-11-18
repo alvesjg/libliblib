@@ -55,9 +55,7 @@ void define_nomes_linhas (char *nomes_linhas[]);
         Sua chamada deve ocorrer após todas as funções acima, a fim de fornecer informações essenciais
         ao gráfico.
 
-        linhas é um inteiro para a quantidade de linhas a serem lidas da planilha.
-
-        colunas é um inteiro para a quantidade de colunas a serem lidas da planilha.
+        linhas e colunas são inteiros para a quantidade de linhas e colunas a serem lidas da planilha.
 
         planilha[][colunas] é uma matriz de float que associa um valor do rótulo x ao rótulo y para
         cada elemento da legenda.
