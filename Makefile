@@ -1,4 +1,4 @@
-PROGRAMAS = testewebascii testewebpng testepastaascii testepastapng
+PROGRAMAS = testewebascii testewebpng testelocalascii testelocalpng
 CC = gcc   					# compilador
 CFLAGS = -I./ -L./ 	        # parametros
 all : $(PROGRAMAS)
