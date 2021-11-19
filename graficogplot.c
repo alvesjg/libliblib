@@ -44,7 +44,6 @@ void desenha_grafico (int linhas, int colunas, float planilha[][colunas]){
 		else if(i<linhas-1)fprintf(arquivo,"\"%s\" w l lw 3,\\\n",nome_linhas[i]);
 		else fprintf(arquivo,"\"%s\" w l lw 3\n",nome_linhas[i]);
 	}
-	printf("chegou aqui");
 	fclose(arquivo);
 	char *arg[3];
 	arg[0] = "gnuplot";
