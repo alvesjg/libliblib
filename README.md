@@ -100,4 +100,4 @@ No momento da compilação, é importante vincular seu código às bibliotecas, 
 ## Gráficos Gerados
 * Usando a libgrapng:
 
-![grapng](./imagens/"PIB per capita nos pa\303\255ses do BRICS.png")
+![grapng](./imagens/"PIB per capita nos países do BRICS.png")
