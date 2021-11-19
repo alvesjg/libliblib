@@ -102,3 +102,8 @@ No momento da compilação, é importante vincular seu código às bibliotecas, 
 * Usando a libgrapng:
 
 ![grapng](https://github.com/alvesjg/libliblib/blob/main/imagens/PIB%20per%20capita%20nos%20pa%C3%ADses%20do%20BRICS.png)
+
+* Usando a libgraterm:
+
+![graterm](https://github.com/alvesjg/libliblib/blob/main/imagens/PIBPerCapitaASCII.png)
+
