@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lerarquivo.h"
 #include <unistd.h>
 char titulo_grafico[128];
 char rotulo_x[64];
@@ -33,11 +32,13 @@ void desenha_grafico (int linhas, int colunas, float planilha[][colunas]){
 		fclose(arquivo);	
 	}
 	FILE *arquivo = fopen("/tmp/script.p","w+");
+	fprintf(arquivo,"set grid \n");
 	fprintf(arquivo,"set title \"%s\" \n",titulo_grafico);
 	fprintf(arquivo,"cd \"/tmp\" \n");
 	fprintf(arquivo,"set key top outside \n");
 	fprintf(arquivo,"set xlabel \"%s\" \n",rotulo_x);
-	fprintf(arquivo,"set ylabel \"%s\" \n",rotulo_y);
+	//fprintf(arquivo,"set lmargin \"10\" \n");
+	fprintf(arquivo,"set ylabel \"%s\" offset character %d\n",rotulo_y,strlen(rotulo_x)/2);
 	fprintf(arquivo,"set term dumb 100 50\n");
 	for(int i=1;i<linhas;i++){
 		if(i==1) fprintf(arquivo,"plot \"%s\" w l ,\\\n",nome_linhas[i]);
@@ -53,49 +54,49 @@ void desenha_grafico (int linhas, int colunas, float planilha[][colunas]){
 	int a = execvp(arg[0],arg);
 }
 
-/*
-unit test
-void main(){
-	int linhas, colunas;
-	char *arquivo = "https://www.ime.usp.br/~kon/tmp/BRICS_PIBPerCapita.csv";
-	float **planilha; char **nomes_linhas;
 
-	planilha = malloc(1000 * sizeof *planilha);
- 	for (int i=0; i<1000; i++)
-  	{
-    	planilha[i] = malloc(1000 * sizeof *planilha[i]);
-  	}
+// void main(){
+// 	int linhas, colunas;
+// 	char *arquivo = "https://www.ime.usp.br/~kon/tmp/BRICS_PIBPerCapita.csv";
+// 	float **planilha; char **nomes_linhas;
 
-        nomes_linhas = malloc(1000 * sizeof *nomes_linhas);
-        for (int i=0; i<1000; i++)
-  	{
-    	nomes_linhas[i] = malloc(256 * sizeof *nomes_linhas[i]);
-  	}
+// 	planilha = malloc(1000 * sizeof *planilha);
+//  	for (int i=0; i<1000; i++)
+//   	{
+//     	planilha[i] = malloc(1000 * sizeof *planilha[i]);
+//   	}
+
+//         nomes_linhas = malloc(1000 * sizeof *nomes_linhas);
+//         for (int i=0; i<1000; i++)
+//   	{
+//     	nomes_linhas[i] = malloc(256 * sizeof *nomes_linhas[i]);
+//   	}
 	
-	carrega_dados(arquivo, &linhas, &colunas, planilha, nomes_linhas);
-	define_nomes_linhas(nomes_linhas);
-	char *titulo = "grafico";
-	define_titulo(titulo);
-	char *rotulo1 = "anos";
-	define_rotulo_x(rotulo1);
-	char *rotulo2 = "PIBPerCapita";
-	define_rotulo_y(rotulo2);
+// 	carrega_dados(arquivo, &linhas, &colunas, planilha, nomes_linhas);
+// 	define_nomes_linhas(nomes_linhas);
+// 	char *titulo = "grafico";
+// 	define_titulo(titulo);
+// 	char *rotulo1 = "anos";
+// 	define_rotulo_x(rotulo1);
+// 	char *rotulo2 = "PIBPerCapita";
+// 	define_rotulo_y(rotulo2);
 
-	for(int i=linhas;i<1000;i++)
-		free(nomes_linhas[i]);
+// 	for(int i=linhas;i<1000;i++)
+// 		free(nomes_linhas[i]);
 
-	float array[linhas][colunas-1];
-	for (int i=0;i<linhas;i++){
-		for(int j=0;j<colunas-1;j++){
-			array[i][j] = planilha[i][j];
-		}
-	}
-
-	for(int i=0;i<1000;i++){
-		free(planilha[i]);
-	}
+// 	float array[linhas][colunas];
 	
-	desenha_grafico(linhas,colunas-1,array);
-}	
-*/
+// 	for (int i=0;i<linhas;i++){
+// 		for(int j=0;j<colunas;j++){
+// 			array[i][j] = planilha[i][j];
+// 		}
+// 	}
+
+// 	for(int i=0;i<1000;i++)
+// 		free(planilha[i]);
+// 	free(planilha);
+	
+// 	desenha_grafico(linhas,colunas,array);
+// }	
+
 		
