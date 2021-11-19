@@ -7,6 +7,7 @@ Conjunto de bibliotecas em linguagem C para carregar dados de um arquivo .csv em
 * [Requisitos](#requisitos)
 * [Setup](#setup)
 * [Guia de Uso](#guia-de-uso)
+* [Gráficos Gerados](#gráficos-gerados)
 
 ## Contribuintes
 * João Guilherme Alves Santos NUSP11819560
@@ -100,4 +101,4 @@ No momento da compilação, é importante vincular seu código às bibliotecas, 
 ## Gráficos Gerados
 * Usando a libgrapng:
 
-![grapng](imagens/"PIB per capita nos países do BRICS.png")
+![grapng](https://github.com/alvesjg/libliblib/blob/main/imagens/PIB%20per%20capita%20nos%20pa%C3%ADses%20do%20BRICS.png)
