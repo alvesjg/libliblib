@@ -87,42 +87,4 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, float ***
 	*linhas = linhas1;
 	*colunas = colunas1-1;
 	}
-	
-/*void main(){
-	int linhas, colunas;
-	char *arquivo = "https://www.ime.usp.br/~kon/tmp/BRICS_PIBPerCapita.csv";
-	float **planilha; char **nomes_linhas;
-
-	planilha = malloc(1000 * sizeof *planilha);
- 	for (int i=0; i<1000; i++)
-  	{
-    	planilha[i] = malloc(1000 * sizeof *planilha[i]);
-  	}
-
-        nomes_linhas = malloc(1000 * sizeof *nomes_linhas);
-        for (int i=0; i<1000; i++)
-  	{
-    	nomes_linhas[i] = malloc(256 * sizeof *nomes_linhas[i]);
-  	}
-
-	carrega_dados(arquivo, &linhas, &colunas, planilha, nomes_linhas);
-
-	for(int i=linhas;i<1000;i++){
-            for(int j=colunas;j<1000;j++){
-            }
-            free(planilha[i]);
-	}
-
-	for(int i=linhas;i<1000;i++)
-		free(nomes_linhas[i]);
-
-	for (int i = 0; i < linhas; i++){
-            printf("%s   ", nomes_linhas[i]);
-		for (int j = 0; j < colunas-1; j++){
-			printf("%f   ", planilha[i][j]);
-		}
-		printf("\n");
-	}
-
-}
-	*/	
+		
