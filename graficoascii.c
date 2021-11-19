@@ -37,15 +37,13 @@ void desenha_grafico (int linhas, int colunas, float planilha[][colunas]){
 	fprintf(arquivo,"cd \"/tmp\" \n");
 	fprintf(arquivo,"set key top outside \n");
 	fprintf(arquivo,"set xlabel \"%s\" \n",rotulo_x);
-	//fprintf(arquivo,"set lmargin \"10\" \n");
-	fprintf(arquivo,"set ylabel \"%s\" offset character %d\n",rotulo_y,strlen(rotulo_x)/2);
+	fprintf(arquivo,"set ylabel \"%s\" offset \n",rotulo_y);
 	fprintf(arquivo,"set term dumb 100 50\n");
 	for(int i=1;i<linhas;i++){
 		if(i==1) fprintf(arquivo,"plot \"%s\" w l ,\\\n",nome_linhas[i]);
 		else if(i<linhas-1)fprintf(arquivo,"\"%s\" w l ,\\\n",nome_linhas[i]);
 		else fprintf(arquivo,"\"%s\" w l \n",nome_linhas[i]);
 	}
-	printf("chegou aqui");
 	fclose(arquivo);
 	char *arg[3];
 	arg[0] = "gnuplot";
