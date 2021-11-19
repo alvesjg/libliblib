@@ -2,6 +2,8 @@ PROGRAMAS = testewebascii testewebpng testelocalascii testelocalpng
 CC = gcc   					# compilador
 CFLAGS = -I./ -L./ 	        # parametros
 all : $(PROGRAMAS)
+clean :
+	rm -f *.a *.so *.o $(PROGRAMAS)
 # Arquivos objetos
 graficoascii.o : graficoascii.c plotagrafico.h
 	$(CC) $(CFLAGS) -c -fPIC graficoascii.c -o graficoascii.o
