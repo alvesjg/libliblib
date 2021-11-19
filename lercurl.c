@@ -24,10 +24,8 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
     }
     arquivo = fopen(arquivo_csv, "r");
 
-	int linhas1;
-	int colunas1;
-	linhas1 = 0;
-	colunas1 = 0;
+	int linhas1 = 0;
+	int colunas1= 0;
 	char linha[1000000];
 
   	float **array = (float **) planilha;
@@ -36,7 +34,7 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
 	int contador = 0;
 	while (fgets(linha, sizeof(linha), arquivo)){
 		linhas1++;
-                colunas1 = 0;
+        colunas1 = 0;
 		char token[100];
 		for(int i=0; i<strlen(linha);i++){
 			if(linha[i] == ',' || linha[i] == '\n'){
@@ -62,6 +60,7 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
 
 	fclose(arquivo);
 	*linhas = linhas1;
+	colunas1 = colunas1 -1;
 	*colunas = colunas1;
     	
 }

@@ -8,17 +8,13 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
 		perror("Não encontrou o arquivo");
 		exit(1);
 	}
-	int linhas1;
-	int colunas1;
-	linhas1 = 0;
-	colunas1 = 0;
+	int linhas1 = 0;
+	int colunas1 = 0;
 	char linha[1000000];
 
   	float **array = (float **) planilha;
     char **aux_nomes = (char **) nomes_linhas;
   
-	int contador = 0;
-	char *comparador = "";
 	while (fgets(linha, sizeof(linha), arquivo)){
 		linhas1++;
         colunas1 = 0;
@@ -34,7 +30,6 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
                                 }
 				memset(token,0,100);
 				colunas1++;
-				contador++;
 				} 
 			else {
 				size_t tamanho = strlen(token);
@@ -47,7 +42,7 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
 
 	fclose(arquivo);
 	*linhas = linhas1;
-	*colunas = colunas1;
+	*colunas = colunas1-1;
 	
 }
 /*void main(){
