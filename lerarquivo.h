@@ -23,6 +23,6 @@
 		OBS: é necessário que a alocação dinâmica de memória seja feita antes da chamada da função
 */
 
-void carrega_dados(char *caminho_dos_dados, int *linhas,int *colunas, void *planilha, char *nomes_linhas[]);
+void carrega_dados(char *caminho_dos_dados, int *linhas,int *colunas, float ***planilha, char **nomes_linhas[]);
 
 #endif

@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *planilha, char *nomes_linhas[]) {
+void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas,float ***planilha, char **nomes_linhas[]) {
 	FILE *arquivo = fopen(caminho_dos_dados, "r");
 	if (arquivo == NULL){
 		perror("Não encontrou o arquivo");
@@ -10,11 +10,33 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
 	}
 	int linhas1 = 0;
 	int colunas1 = 0;
-	char linha[1000000];
+	char linha[2048];
 
-  	float **array = (float **) planilha;
-    char **aux_nomes = (char **) nomes_linhas;
-  
+    
+    while(fgets(linha, sizeof(linha),arquivo)){
+    	linhas1++;
+    	if (linhas1==1){
+    		for(int i=0;i<strlen(linha);i++){
+    			if(linha[i]==',' || linha[i]=='\n') colunas1++;
+    		} 
+    	}
+    }
+    fclose(arquivo);
+    *planilha= malloc( sizeof(float *) * (linhas1) );
+
+    for (int i=0;i<linhas1;i++) 
+    	(*planilha)[i] = malloc(sizeof(float) * (colunas1));
+
+    
+    *nomes_linhas = malloc(sizeof(char *) * (linhas1));
+    for (int i=0; i<1000; i++)
+    	(*nomes_linhas)[i] = malloc(256 * sizeof(char) );
+  	
+    
+
+    arquivo = fopen(caminho_dos_dados, "r");
+    
+    linhas1=0;
 	while (fgets(linha, sizeof(linha), arquivo)){
 		linhas1++;
         colunas1 = 0;
@@ -22,11 +44,11 @@ void carrega_dados(char *caminho_dos_dados, int *linhas, int *colunas, void *pla
 		for(int i=0; i<strlen(linha);i++){
 			if(linha[i] == ',' || linha[i] == '\n'){
                                 if (colunas1==0) {
-                                    strcpy(aux_nomes[linhas1-1],token);
+                                    strcpy(nomes_linhas[0][linhas1-1],token);
                                 }
                                 else {
-                                	array[linhas1-1][colunas1-1] = array[linhas1-1][colunas1-1]/0.0; 
-                                    if(strlen(token)>0)array[linhas1-1][colunas1-1] = atof(token);
+                                	planilha[0][linhas1-1][colunas1-1] = planilha[0][linhas1-1][colunas1-1]/0.0; 
+                                    if(strlen(token)>0)  planilha[0][linhas1-1][colunas1-1] = atof(token);
                                 }
 				memset(token,0,100);
 				colunas1++;
