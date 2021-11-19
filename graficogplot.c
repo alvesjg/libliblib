@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "lerarquivo.h"
 #include <unistd.h>
 char titulo_grafico[128];
 char rotulo_x[64];
@@ -34,7 +33,7 @@ void desenha_grafico (int linhas, int colunas, float planilha[][colunas]){
 	}
 	FILE *arquivo = fopen("/tmp/script.p","w+");
 	fprintf(arquivo,"set title \"%s\" \n",titulo_grafico);
-	fprintf(arquivo,"set term png size 1024,768 \nset output \"teste.png\"  \n");
+	fprintf(arquivo,"set term png size 1024,768 \nset output \"%s.png\"  \n",titulo_grafico);
 	fprintf(arquivo,"cd \"/tmp\" \n");
 	fprintf(arquivo,"set key top outside \n");
 	fprintf(arquivo,"set xlabel \"%s\" \n",rotulo_x);
